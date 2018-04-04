@@ -4,6 +4,7 @@ This app generate GeoJSON format which are suitable for MongoDB GeoSpatial query
 
 For example, for a single pharmacy it should contain the following element:
 
+```
 {
     "address": "10519 King George Blvd Surrey, BC  V3T 2X1 CANADA",
     "fax": "(604) 585-3350",
@@ -17,9 +18,12 @@ For example, for a single pharmacy it should contain the following element:
     "name": "BELL PHARMACY",
     "phone": "(604) 585-3355"
 }
+````
 
 You can import the generate file into mongo db via mongoimport, for example:
+```
 mongoimport --db dbName --collection collectionName --file fileName.json 
+```
 
 Then you can perform Geo Spatial query, for example:
 
