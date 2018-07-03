@@ -32,6 +32,13 @@ db.pharmacy.find({ location:    { $geoWithin:       { $centerSphere: [ [ -123.35
 { "_id" : ObjectId("5ab6d3747c9c1550b23f9989"), "name" : "AARONSON'S PHARMACY (COOK ST.) LTD.", "address" : "1711 Cook St. Victoria, BC  V8T 3P2 CANADA", "phone" : "(250) 383-6511", "fax" : "(250) 383-1353", "location" : { "type" : "Point", "coordinates" : [ -123.3527434, 48.4288383 ] } }
 ```
 
+Or if you want the returned result to be sorted by order (clostest to furthest away) , you can use nearSphere instead of centerSphere.
+
+```
+var METERS_PER_MILE = 1609.34
+db.restaurants.find({ location: { $nearSphere: { $geometry: { type: "Point", coordinates: [ -73.93414657, 40.82302903 ] }, $maxDistance: 1 * METERS_PER_MILE } } })
+```
+
 This appl works in both sequence and paraller mode which is much faster depends on number of thread you specify.
 
 N.B the code isn't clean at all and require many tidy up.
